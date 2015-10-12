@@ -346,6 +346,14 @@ Run `ansible hostname -m setup`, but in particular:
 
 ### Local Facts (Facts.d)
 
+If a remotely managed system has an `/etc/ansible/facts.d` directory, any files in this directory ending in .fact, can be JSON, INI, or executable files returning JSON, and these can supply local facts in Ansible.
+
+For instance assume a `/etc/ansible/facts.d/preferences.fact`:
+
+    [general]
+    asdf=1
+    bar=2
+
 [More](http://docs.ansible.com/ansible/playbooks_variables.html#local-facts-facts-d)
 
 ### Fact Caching
