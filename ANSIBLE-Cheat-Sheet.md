@@ -8,10 +8,10 @@
 
 First one found from of
 
-* Contents of `$ANSIBLE_CONFIG`
-* `./ansible.cfg`
-* `~/.ansible.cfg`
-* `/etc/ansible/ansible.cfg`
+1. Contents of `$ANSIBLE_CONFIG`
+2. `./ansible.cfg`
+3. `~/.ansible.cfg`
+4. `/etc/ansible/ansible.cfg`
 
 Configuration settings can be overridden by environment variables - see
 constants.py in the source tree for names.
