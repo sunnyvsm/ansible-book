@@ -304,6 +304,8 @@ YAML requires an item starting with a variable substitution to be quoted.
 
 * Highest priority:
     * `--extra-vars` on the command line
+    * demo: `$ ansible-playbook release.yml --extra-vars "hosts=vipers user=starbuck`
+    * demo: `$ ansible-playbook release.yml --extra-vars '{"pacman":"mrs","ghosts":["inky","pinky","clyde","sue"]}'`
 * General:
     * `vars` component of a playbook
     * From files referenced by `vars_file` in a playbook
