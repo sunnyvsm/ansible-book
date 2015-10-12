@@ -344,9 +344,13 @@ Run `ansible hostname -m setup`, but in particular:
 * `ansible_default_ipv4.address`
 * `ansible_default_ipv6.address`
 
-## Local Facts (Facts.d)
+### Local Facts (Facts.d)
 
 [More](http://docs.ansible.com/ansible/playbooks_variables.html#local-facts-facts-d)
+
+### Fact Caching
+
+[More](http://docs.ansible.com/ansible/playbooks_variables.html#fact-caching)
 
 ## Content of 'registered' variables:
 
