@@ -328,7 +328,8 @@ YAML requires an item starting with a variable substitution to be quoted.
 * `inventory_hostname_short` (first component of inventory_hostname)
 * `play_hosts` (hostnames in scope for current play)
 * `inventory_dir` (location of the inventory)
-* `inventoty_file` (name of the inventory)
+* `inventory_file` (name of the inventory)
+* `role_path` (role’s pathname)
 
 ## Facts:
 
