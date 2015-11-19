@@ -1,6 +1,6 @@
-# Ansible Cheat Sheet
+# An Ansible summary
 
-[Jon Warbrick, July 2014, V3.2 (for Ansible 1.7)](http://www-uxsup.csx.cam.ac.uk/~jw35/docs/ansible/ansible-summary.html)
+Jon Warbrick, July 2014, V3.2 (for Ansible 1.7)
 
 # Configuration file
 
@@ -8,10 +8,10 @@
 
 First one found from of
 
-1. Contents of `$ANSIBLE_CONFIG`
-2. `./ansible.cfg`
-3. `~/.ansible.cfg`
-4. `/etc/ansible/ansible.cfg`
+* Contents of `$ANSIBLE_CONFIG`
+* `./ansible.cfg`
+* `~/.ansible.cfg`
+* `/etc/ansible/ansible.cfg`
 
 Configuration settings can be overridden by environment variables - see
 constants.py in the source tree for names.
@@ -291,25 +291,6 @@ Show playbook snippet for specified module
 
 Names: letters, digits, underscores; starting with a letter.
 
-## Variable Precedence
-
-1. extra vars
-2. task vars (only for the task)
-3. block vars (only for tasks in block)
-4. role and include vars
-5. play vars_files
-6. play vars_prompt
-7. play vars
-8. set_facts
-9. registered vars
-10. host facts
-11. playbook host_vars
-12. playbook group_vars
-13. inventory host_vars
-14. inventory group_vars
-15. inventory vars
-16. role defaults
-
 ## Substitution examples: 
 
 * `{{ var }}`
@@ -323,9 +304,6 @@ YAML requires an item starting with a variable substitution to be quoted.
 
 * Highest priority:
     * `--extra-vars` on the command line
-    * demo: `--extra-vars "hosts=vipers user=starbuck`
-    * demo: `--extra-vars '{"pacman":"mrs","ghosts":["inky","pinky","clyde","sue"]}'`
-    * demo: `--extra-vars "@some_file.json"`
 * General:
     * `vars` component of a playbook
     * From files referenced by `vars_file` in a playbook
@@ -350,8 +328,7 @@ YAML requires an item starting with a variable substitution to be quoted.
 * `inventory_hostname_short` (first component of inventory_hostname)
 * `play_hosts` (hostnames in scope for current play)
 * `inventory_dir` (location of the inventory)
-* `inventory_file` (name of the inventory)
-* `role_path` (role’s pathname)
+* `inventoty_file` (name of the inventory)
 
 ## Facts:
 
@@ -366,22 +343,6 @@ Run `ansible hostname -m setup`, but in particular:
 * `ansible_pkg_mgr`
 * `ansible_default_ipv4.address`
 * `ansible_default_ipv6.address`
-
-### Local Facts (Facts.d)
-
-If a remotely managed system has an `/etc/ansible/facts.d` directory, any files in this directory ending in .fact, can be JSON, INI, or executable files returning JSON, and these can supply local facts in Ansible.
-
-For instance assume a `/etc/ansible/facts.d/preferences.fact`:
-
-    [general]
-    asdf=1
-    bar=2
-
-[More](http://docs.ansible.com/ansible/playbooks_variables.html#local-facts-facts-d)
-
-### Fact Caching
-
-[More](http://docs.ansible.com/ansible/playbooks_variables.html#fact-caching)
 
 ## Content of 'registered' variables:
 
@@ -405,7 +366,7 @@ responses from the module.
 ## Additionally available in templates:
 
 * `ansible_managed`: string containing the information below
-* `template_host`: node name of the template’s machine
+* `template_host`: node name of the templateâs machine
 * `template_uid`: the owner
 * `template_path`: absolute path of the template
 * `template_fullpath`: the absolute path of the template
@@ -850,38 +811,3 @@ playbooks_vault.html
     Usage: ansible-pull [options] [playbook.yml]
 
     ansible-pull: error: URL for repository not specified, use -h for help
-
-
-# Best Practices
-
-Ansible default folder structure from http://docs.ansible.com/playbooks_best_practices.html
-
-Examples:
-
-Now what sort of use cases does this layout enable? Lots! If I want to reconfigure my whole infrastructure, it’s just:
-
-* ansible-playbook -i production site.yml
-
-What about just reconfiguring NTP on everything? Easy.:
-
-* ansible-playbook -i production site.yml --tags ntp
-
-What about just reconfiguring my webservers?:
-
-* ansible-playbook -i production webservers.yml
-
-What about just my webservers in Boston?:
-
-* ansible-playbook -i production webservers.yml --limit boston
-
-What about just the first 10, and then the next 10?:
-
-* ansible-playbook -i production webservers.yml --limit boston[0-10]
-* ansible-playbook -i production webservers.yml --limit boston[10-20]
-
-And of course just basic ad-hoc stuff is also possible.:
-
-* ansible boston -i production -m ping
-* ansible boston -i production -m command -a '/sbin/reboot'
-
-Continue: https://github.com/ansible/ansible-examples
